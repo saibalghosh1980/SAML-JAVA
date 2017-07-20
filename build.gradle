@@ -1,0 +1,47 @@
+group = 'com.auth0'
+
+apply plugin: 'java'
+apply plugin: 'war'
+apply plugin: 'trust-all'
+apply from: 'https://raw.githubusercontent.com/akhikhl/gretty/master/pluginScripts/gretty.plugin'
+
+compileJava {
+    sourceCompatibility '1.8'
+    targetCompatibility '1.8'
+}
+
+buildscript {
+    dependencies {
+        classpath files('gradle/gradle-trust-all.jar')
+    }
+}
+
+gretty {
+    httpPort = 8080
+    contextPath = '/'
+    servletContainer 'tomcat8'
+    afterEvaluate {
+    appRunDebug {
+      debugPort = 5005
+      debugSuspend = true
+    }
+  }
+}
+
+repositories {
+    mavenCentral()
+}
+
+
+dependencies {
+    compile 'com.auth0:mvc-auth-commons:1.0.0'
+    // https://mvnrepository.com/artifact/com.onelogin/java-saml
+    compile group: 'com.onelogin', name: 'java-saml', version: '2.0.1' 
+    // https://mvnrepository.com/artifact/com.onelogin/java-saml-core
+compile group: 'com.onelogin', name: 'java-saml-core', version: '2.0.1'   
+// https://mvnrepository.com/artifact/com.onelogin/java-saml-toolkit
+compile group: 'com.onelogin', name: 'java-saml-toolkit', version: '2.0.1'
+    compile 'javax.servlet:javax.servlet-api:3.1.0'
+    runtime 'javax.servlet:jstl:1.2'
+    testCompile 'junit:junit:4.12'
+}
