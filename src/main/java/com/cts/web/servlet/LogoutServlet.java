@@ -21,7 +21,6 @@ public class LogoutServlet extends HttpServlet {
 	protected void doGet(final HttpServletRequest request, final HttpServletResponse response)
 			throws ServletException, IOException {
 		if (request.getSession() != null) {
-			// request.getSession().invalidate();
 			Auth auth;
 			try {
 				auth = new Auth(request, response);
@@ -29,6 +28,10 @@ public class LogoutServlet extends HttpServlet {
 				// auth.setSessionIndex((String)request.getSession().getAttribute("SessionIndex"));
 				String url = "http://" + request.getServerName() + ":" + request.getServerPort()
 						+ request.getContextPath() + "/login";
+				while (request.getSession().getAttributeNames().hasMoreElements()) {
+					request.getSession().removeAttribute(request.getSession().getAttributeNames().nextElement());
+				}
+				request.getSession().invalidate();
 				auth.logout(url, (String) request.getSession().getAttribute("nameId"),
 						(String) request.getSession().getAttribute("SessionIndex"));
 			} catch (SettingsException e) {

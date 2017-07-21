@@ -22,7 +22,7 @@ import java.util.Map;
  * authorization code grant flow. It will be called with the authorization code
  * after a successful login.
  */
-@WebServlet(urlPatterns = { "/callback" })
+@WebServlet(urlPatterns = { "/HealthIns" })
 public class CallbackServlet extends HttpServlet {
 
 	private String redirectOnSuccess;

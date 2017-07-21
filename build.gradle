@@ -17,7 +17,9 @@ buildscript {
 }
 
 gretty {
-    httpPort = 8080
+    httpPort = 80
+    httpsEnabled = true
+    httpsPort = 443
     contextPath = '/'
     servletContainer 'tomcat8'
     afterEvaluate {
