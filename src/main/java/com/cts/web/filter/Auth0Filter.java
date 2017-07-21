@@ -13,13 +13,12 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.auth0.SessionUtils;
-
 @WebFilter(urlPatterns = "/portal/*")
 public class Auth0Filter implements Filter {
 
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {
+		
 	}
 
 	/**
